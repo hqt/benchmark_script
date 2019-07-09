@@ -20,6 +20,19 @@ while test -e $RUNFILE; do
     echo "$ts $loadavg" >> $STOREFILE/$PREFIX-${file}-processlist
 
     mysql -uroot -e 'SHOW FULL PROCESSLIST\G' >> $STOREFILE/$PREFIX-${file}-processlist &
+    echo "$ts $loadavg" >> $STOREFILE/$PREFIX-${file}-iostat 
+   
+    iostat -xty 1 1 >> $STOREFILE/$PREFIX-${file}-iostat &
+    echo "$ts $loadavg" >> $STOREFILE/$PREFIX-${file}-memory
+
+    sar -r 1 1 >> $STOREFILE/$PREFIX-${file}-memory &
+    echo "$ts $loadavg" >> $STOREFILE/$PREFIX-${file}-cpu
+
+    mpstat -P ALL  >> $STOREFILE/$PREFIX-${file}-cpu &
+    echo "$ts $loadavg" >> $STOREFILE/$PREFIX-${file}-disk
+
+    df  >> $STOREFILE/$PREFIX-${file}-disk &
     echo $ts
+
 done
 echo Exiting because $RUNFILE does not exist.
