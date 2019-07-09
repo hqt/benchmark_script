@@ -1,5 +1,6 @@
 sysbench /usr/share/sysbench/oltp_insert.lua \
 --threads=$threads \
+--rand-type=uniform \
 --mysql-socket=/disk1/mysql/mysql.sock \
 --mysql-user=$user \
 --mysql-password=$password \

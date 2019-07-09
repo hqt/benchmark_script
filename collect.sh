@@ -1,8 +1,8 @@
 #!/bin/sh
 INTERVAL=5
 PREFIX=$INTERVAL-sec-status
-RUNFILE=/disk1/work/script/running
-STOREFILE=/disk1/work/script/data
+RUNFILE=/disk1/script/running
+STOREFILE=/disk1/script/data
 # mysql -uroot -proot -e 'SHOW GLOBAL VARIABLES' >> mysql-variables
 mysql -uroot -e 'SHOW GLOBAL VARIABLES' >> mysql-variables
 while test -e $RUNFILE; do
